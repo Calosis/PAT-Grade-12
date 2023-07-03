@@ -1,0 +1,14 @@
+[MSBuild Error] The "GetItCmd" task failed unexpectedly.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Borland.Build.Tasks.Common.CommandLineTask.Execute()
+   at Borland.Build.Tasks.Shared.GetItCmd.Execute()
+   at Microsoft.Build.BuildEngine.TaskEngine.ExecuteInstantiatedTask(EngineProxy engineProxy, ItemBucket bucket, TaskExecutionMode howToExecuteTask, ITask task, Boolean& taskResult)
+
+_______________________________________
+
+[*] Set the BDSHost environment variable to true in the Delphi IDE settings:
+
+    Go to Tools > Options.
+    Go to Environment Options > Environment Variables.
+    Under User overrides, click New.
+    Variable name: BDSHost, Variable value: true.
