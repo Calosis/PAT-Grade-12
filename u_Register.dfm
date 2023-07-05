@@ -350,15 +350,16 @@ object frmRegister: TfrmRegister
       ShowCaption = False
       TabOrder = 1
       object pbQR: TPaintBox
-        Left = 376
-        Top = 32
-        Width = 233
-        Height = 209
+        Left = 352
+        Top = 64
+        Width = 180
+        Height = 180
         Color = clMedGray
         ParentColor = False
+        OnPaint = pbQRPaint
       end
       object imgHelp: TImage
-        Left = 591
+        Left = 583
         Top = 336
         Width = 42
         Height = 41
@@ -651,7 +652,29 @@ object frmRegister: TfrmRegister
         ParentShowHint = False
         ShowHint = True
         TabOrder = 3
+        OnClick = btnRegisterClick
+      end
+      object stQRCode: TStaticText
+        Left = 352
+        Top = 39
+        Width = 74
+        Height = 19
+        Caption = '2FA QRCode:'
+        TabOrder = 4
+      end
+      object StaticText1: TStaticText
+        Left = 514
+        Top = 351
+        Width = 63
+        Height = 19
+        Caption = 'Need help?'
+        TabOrder = 5
       end
     end
+  end
+  object tOTP: TTimer
+    Interval = 50
+    OnTimer = tOTPTimer
+    Top = 8
   end
 end

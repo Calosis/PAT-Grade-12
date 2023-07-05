@@ -9,7 +9,9 @@ uses
   u_Functions in 'u_Functions.pas',
   u_Register in 'u_Register.pas' {frmRegister},
   u_QRCode in 'u_QRCode.pas',
-  u_Login in 'u_Login.pas' {frmLogin};
+  u_Login in 'u_Login.pas' {frmLogin},
+  u_Base32 in 'u_Base32.pas',
+  u_Google2FA in 'u_Google2FA.pas';
 
 {$R *.res}
 

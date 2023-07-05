@@ -16,7 +16,7 @@ type
     conApplication: TADOConnection;
 
     tblUsers, tblObjectives, tblLink: TADOTable;
-    dsrUsers, dsrObjectives, dsrLink: TDataSource;
+    dsrUsers, dsrObjectives, dsrLink, dsrSQL: TDataSource;
     qrQuery: TADOQuery;
 
   end;
@@ -45,6 +45,8 @@ begin
   dsrObjectives := TDataSource.Create(dmConnection);
   dsrLink := TDataSource.Create(dmConnection);
 
+  dsrSQL := TDataSource.Create(dmConnection);
+
   // Dynamically create modules on form. (TADOQuery)
   qrQuery := TADOQuery.Create(dmConnection);
 
@@ -71,7 +73,9 @@ begin
   tblLink.Connection := conApplication;
   tblLink.TableName := 'tblLink';
 
+  // SQL init.
   qrQuery.Connection := conApplication;
+  dsrSQL.DataSet := qrQuery;
 
   // Set source of dataset.
   dsrUsers.DataSet := tblUsers;

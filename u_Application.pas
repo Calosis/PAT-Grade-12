@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels,
-  Vcl.WinXCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ComCtrls;
+  Vcl.WinXCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ComCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrmApplication = class(TForm)
@@ -24,6 +25,7 @@ type
     procedure btnRegisterClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
+    procedure btnResetClick(Sender: TObject);
 
   private
   public
@@ -38,24 +40,26 @@ implementation
 
 {$R *.dfm}
 
-uses u_Functions, u_Register, u_Login;
+uses u_Functions, u_Register, u_Login, u_DatabaseConnection;
 
 procedure TfrmApplication.btnLoginClick(Sender: TObject);
 begin
-
   // Move form.
   frmApplication.Hide;
   frmLogin.Show;
-
 end;
 
 procedure TfrmApplication.btnRegisterClick(Sender: TObject);
 begin
-
   // Move between forms.
   frmApplication.Hide;
   frmRegister.Show;
+end;
 
+procedure TfrmApplication.btnResetClick(Sender: TObject);
+begin
+  // Run db reset.
+  TFunctions.resetDB;
 end;
 
 procedure TfrmApplication.FormCreate(Sender: TObject);
@@ -77,10 +81,8 @@ end;
 
 procedure TfrmApplication.FormShow(Sender: TObject);
 begin
-
   // New window should be centre.
   TFunctions.sizeCentre(frmApplication);
-
 end;
 
 procedure TfrmApplication.imgMenuClick(Sender: TObject);

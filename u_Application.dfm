@@ -1319,6 +1319,7 @@ object frmApplication: TfrmApplication
     Height = 34
     Caption = 'Reset Database'
     TabOrder = 2
+    OnClick = btnResetClick
   end
   object svSide: TSplitView
     Left = 0
