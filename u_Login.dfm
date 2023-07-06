@@ -522,6 +522,15 @@ object frmLogin: TfrmLogin
         TabOrder = 2
         OnClick = btnLoginClick
       end
+      object Button1: TButton
+        Left = 448
+        Top = 280
+        Width = 75
+        Height = 25
+        Caption = 'Button1'
+        TabOrder = 3
+        OnClick = Button1Click
+      end
     end
   end
   object tOTP: TTimer

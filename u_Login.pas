@@ -20,6 +20,7 @@ type
     edtPassword: TLabeledEdit;
     btnLogin: TBitBtn;
     tOTP: TTimer;
+    Button1: TButton;
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
 
@@ -33,6 +34,7 @@ type
     procedure btnRegisterClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure tOTPTimer(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,14 +50,14 @@ implementation
 
 {$R *.dfm}
 
-uses u_Application, u_Functions, u_Register, u_DatabaseConnection, u_Google2FA;
+uses u_Application, u_Functions, u_Register, u_DatabaseConnection, u_Google2FA,
+  u_Objectives;
 
 procedure TfrmLogin.btnBackClick(Sender: TObject);
 begin
-
+  // Move.
   frmLogin.Hide;
   frmApplication.Show;
-
 end;
 
 procedure TfrmLogin.btnLoginClick(Sender: TObject);
@@ -101,13 +103,11 @@ begin
     TFunctions.openSQL('SELECT Password FROM tblUsers WHERE Username = "' +
       sUsername + '"');
     sPasswordT := dmConnection.qrQuery.Fields[0].AsString;
-    ShowMessage('P:' + sPasswordT);
 
     // Token.
     TFunctions.openSQL('SELECT [2FAToken] FROM tblUsers WHERE Username = "' +
       sUsername + '"');
     sToken := dmConnection.qrQuery.Fields[0].AsString;
-    ShowMessage('T:' + sToken);
 
   end;
 
@@ -192,7 +192,8 @@ begin
       edtPassword.Clear;
 
       // Show.
-      ShowMessage('Login here.');
+      frmLogin.Hide;
+      frmObjectives.Show;
 
       // Update last login data for user.
       TFunctions.execSQL('UPDATE tblUsers SET LastLogin = #' + DateToStr(Now) +
@@ -207,6 +208,13 @@ begin
   // Move forms.
   frmLogin.Hide;
   frmRegister.Show;
+end;
+
+procedure TfrmLogin.Button1Click(Sender: TObject);
+begin
+  // bypass for dev
+  frmLogin.Hide;
+  frmObjectives.Show;
 end;
 
 procedure TfrmLogin.CreateParams(var Params: TCreateParams);
@@ -287,6 +295,7 @@ end;
 
 procedure TfrmLogin.tOTPTimer(Sender: TObject);
 begin
+  // OTP Calc. (6 numbers)
   iOTP := CalculateOTP(sToken);
 end;
 

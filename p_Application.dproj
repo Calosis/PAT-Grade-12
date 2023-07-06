@@ -124,6 +124,10 @@
         </DCCReference>
         <DCCReference Include="u_Base32.pas"/>
         <DCCReference Include="u_Google2FA.pas"/>
+        <DCCReference Include="u_Objectives.pas">
+            <Form>frmObjectives</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

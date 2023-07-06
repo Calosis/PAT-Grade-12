@@ -65,9 +65,6 @@ end;
 procedure TfrmApplication.FormCreate(Sender: TObject);
 begin
 
-  // Default shown on startup.
-  bShown := true;
-
   // Don't allow resize.
   TFunctions.disableSize(frmApplication);
 
@@ -83,6 +80,9 @@ procedure TfrmApplication.FormShow(Sender: TObject);
 begin
   // New window should be centre.
   TFunctions.sizeCentre(frmApplication);
+
+  // Set
+  bShown := true;
 end;
 
 procedure TfrmApplication.imgMenuClick(Sender: TObject);

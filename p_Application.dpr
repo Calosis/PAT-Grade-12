@@ -11,7 +11,8 @@ uses
   u_QRCode in 'u_QRCode.pas',
   u_Login in 'u_Login.pas' {frmLogin},
   u_Base32 in 'u_Base32.pas',
-  u_Google2FA in 'u_Google2FA.pas';
+  u_Google2FA in 'u_Google2FA.pas',
+  u_Objectives in 'u_Objectives.pas' {frmObjectives};
 
 {$R *.res}
 
@@ -23,5 +24,6 @@ begin
   Application.CreateForm(TdmConnection, dmConnection);
   Application.CreateForm(TfrmRegister, frmRegister);
   Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmObjectives, frmObjectives);
   Application.Run;
 end.
