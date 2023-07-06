@@ -6,12 +6,11 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCtrls,
-  Vcl.Imaging.pngimage, Vcl.StdCtrls;
+  Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   TfrmObjectives = class(TForm)
     svSide: TSplitView;
-    Button1: TButton;
     rpHold: TRelativePanel;
     imgMenu: TImage;
     gpTop: TGridPanel;
@@ -32,6 +31,8 @@ type
     imgView7: TImage;
     imgView8: TImage;
     imgView3: TImage;
+    stName: TStaticText;
+    btnBack: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -39,6 +40,7 @@ type
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
     procedure imgMenuClick(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,7 +64,14 @@ implementation
 
 {$R *.dfm}
 
-uses u_Functions, u_DatabaseConnection;
+uses u_Functions, u_DatabaseConnection, u_Application;
+
+procedure TfrmObjectives.btnBackClick(Sender: TObject);
+begin
+  // Move.
+  frmObjectives.Hide;
+  frmApplication.Show;
+end;
 
 procedure TfrmObjectives.CreateParams(var Params: TCreateParams);
 begin

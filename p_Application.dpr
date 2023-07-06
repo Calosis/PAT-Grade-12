@@ -12,7 +12,8 @@ uses
   u_Login in 'u_Login.pas' {frmLogin},
   u_Base32 in 'u_Base32.pas',
   u_Google2FA in 'u_Google2FA.pas',
-  u_Objectives in 'u_Objectives.pas' {frmObjectives};
+  u_Objectives in 'u_Objectives.pas' {frmObjectives},
+  U_ObjectiveO in 'U_ObjectiveO.pas';
 
 {$R *.res}
 
