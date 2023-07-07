@@ -2,8 +2,8 @@ object frmObjectives: TfrmObjectives
   Left = 0
   Top = 0
   Caption = 'Impactify | User'
-  ClientHeight = 562
-  ClientWidth = 938
+  ClientHeight = 561
+  ClientWidth = 934
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frmObjectives: TfrmObjectives
     Left = 0
     Top = 0
     Width = 200
-    Height = 562
+    Height = 561
     AnimationDelay = 20
     AnimationStep = 15
     Color = clBackground
@@ -26,10 +26,9 @@ object frmObjectives: TfrmObjectives
     Placement = svpLeft
     TabOrder = 0
     StyleName = 'Windows11 MineShaft'
-    ExplicitHeight = 561
     object stName: TStaticText
       Left = 16
-      Top = 8
+      Top = 19
       Width = 174
       Height = 46
       Caption = 'Impactify'
@@ -189,8 +188,8 @@ object frmObjectives: TfrmObjectives
   object rpHold: TRelativePanel
     Left = 200
     Top = 0
-    Width = 738
-    Height = 562
+    Width = 734
+    Height = 561
     ControlCollection = <
       item
         Control = imgMenu
@@ -221,11 +220,9 @@ object frmObjectives: TfrmObjectives
       end>
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 734
-    ExplicitHeight = 561
     DesignSize = (
-      738
-      562)
+      734
+      561)
     object imgMenu: TImage
       Left = 696
       Top = 8
@@ -713,6 +710,7 @@ object frmObjectives: TfrmObjectives
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
+        OnClick = pnl1Click
         object imgView1: TImage
           Left = 196
           Top = 69
@@ -762,6 +760,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 1
+        OnClick = pnl2Click
         object imgView2: TImage
           Left = 196
           Top = 69
@@ -811,6 +810,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 2
+        OnClick = pnl3Click
         object imgView3: TImage
           Left = 196
           Top = 69
@@ -860,6 +860,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 3
+        OnClick = pnl4Click
         object imgView4: TImage
           Left = 196
           Top = 69
@@ -957,6 +958,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 0
+        OnClick = pnl5Click
         object imgView5: TImage
           Left = 196
           Top = 69
@@ -1006,6 +1008,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 1
+        OnClick = pnl6Click
         object imgView6: TImage
           Left = 196
           Top = 69
@@ -1055,6 +1058,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 2
+        OnClick = pnl7Click
         object imgView7: TImage
           Left = 196
           Top = 69
@@ -1104,6 +1108,7 @@ object frmObjectives: TfrmObjectives
         BevelOuter = bvLowered
         Caption = 'Click to create an objective'
         TabOrder = 3
+        OnClick = pnl8Click
         object imgView8: TImage
           Left = 196
           Top = 69

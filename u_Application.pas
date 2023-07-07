@@ -59,14 +59,14 @@ end;
 procedure TfrmApplication.btnResetClick(Sender: TObject);
 begin
   // Run db reset.
-  TFunctions.resetDB;
+  Functions.resetDB;
 end;
 
 procedure TfrmApplication.FormCreate(Sender: TObject);
 begin
 
   // Don't allow resize.
-  TFunctions.disableSize(frmApplication);
+  Functions.disableSize(frmApplication);
 
   // Set some basics.
   redInform.Enabled := false;
@@ -79,7 +79,7 @@ end;
 procedure TfrmApplication.FormShow(Sender: TObject);
 begin
   // New window should be centre.
-  TFunctions.sizeCentre(frmApplication);
+  Functions.sizeCentre(frmApplication);
 
   // Set
   bShown := true;

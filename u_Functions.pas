@@ -10,7 +10,7 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids;
 
 type
-  TFunctions = class(TObject)
+  Functions = class(TObject)
 
     // Allow public acesss to all functions.
 
@@ -32,7 +32,8 @@ implementation
 uses u_DatabaseConnection;
 
 // Source - https://stackoverflow.com/users/1062933/please-dont-bully-me-so-lords
-class procedure TFunctions.disableSize(Form: TForm);
+
+class procedure Functions.disableSize(Form: TForm);
 begin
 
   // Disable window resize.
@@ -41,7 +42,7 @@ begin
 
 end;
 
-class procedure TFunctions.execSQL(sSQL: String);
+class procedure Functions.execSQL(sSQL: String);
 begin
   // Query db.
   dmConnection.qrQuery.SQL.Clear;
@@ -49,7 +50,7 @@ begin
   dmConnection.qrQuery.execSQL;
 end;
 
-class function TFunctions.isNumber(Input: String): Boolean;
+class function Functions.isNumber(Input: String): Boolean;
 var
   iTemp, iStatus: Integer;
 begin
@@ -65,7 +66,7 @@ begin
   end;
 end;
 
-class procedure TFunctions.makeRound(Control: TWinControl);
+class procedure Functions.makeRound(Control: TWinControl);
 var
   Rect: TRect;
   Rgn: HRGN;
@@ -85,7 +86,7 @@ begin
   end;
 end;
 
-class procedure TFunctions.openSQL(sSQL: String);
+class procedure Functions.openSQL(sSQL: String);
 begin
   // Query db.
   dmConnection.qrQuery.SQL.Clear;
@@ -93,7 +94,7 @@ begin
   dmConnection.qrQuery.Open;
 end;
 
-class procedure TFunctions.resetDB;
+class procedure Functions.resetDB;
 begin
 
   // Clean up database.
@@ -113,9 +114,9 @@ begin
         // Copy backup before we do anything
         CopyFile('dbmApplication.mdb', 'dbmApplication.mdb.bak', false);
 
-        TFunctions.execSQL('DELETE * FROM tblLink');
-        TFunctions.execSQL('DELETE * FROM tblUsers');
-        TFunctions.execSQL('DELETE * FROM tblObjectives');
+        Functions.execSQL('DELETE * FROM tblLink');
+        Functions.execSQL('DELETE * FROM tblUsers');
+        Functions.execSQL('DELETE * FROM tblObjectives');
 
         // Reopen.
         dmConnection.tblLink.Open;
@@ -138,7 +139,7 @@ begin
   end;
 end;
 
-class procedure TFunctions.sizeCentre(Form: TForm);
+class procedure Functions.sizeCentre(Form: TForm);
 begin
   // Centre window based on monitor size.
   Form.Left := (Form.Monitor.Width - Form.Width) div 2;

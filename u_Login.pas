@@ -100,12 +100,12 @@ begin
     bFound := true;
 
     // Lets get the password now + 2FAToken.
-    TFunctions.openSQL('SELECT Password FROM tblUsers WHERE Username = "' +
+    Functions.openSQL('SELECT Password FROM tblUsers WHERE Username = "' +
       sUsername + '"');
     sPasswordT := dmConnection.qrQuery.Fields[0].AsString;
 
     // Token.
-    TFunctions.openSQL('SELECT [2FAToken] FROM tblUsers WHERE Username = "' +
+    Functions.openSQL('SELECT [2FAToken] FROM tblUsers WHERE Username = "' +
       sUsername + '"');
     sToken := dmConnection.qrQuery.Fields[0].AsString;
 
@@ -144,7 +144,7 @@ begin
     // Grab OTP from user.
     sTemp := InputBox('Impactify Login:', 'OTP:', '');
 
-    if TFunctions.isNumber(sTemp) = false then
+    if (Functions.isNumber(sTemp) = false) then
     begin
       ShowMessage('Please enter a number.');
       Exit;
@@ -169,7 +169,7 @@ begin
         // Grab OTP from user.
         sTemp := InputBox('Impactify Login:', 'OTP:', '');
 
-        if TFunctions.isNumber(sTemp) = false then
+        if Functions.isNumber(sTemp) = false then
         begin
           ShowMessage('Please enter a number.');
           Exit;
@@ -196,7 +196,7 @@ begin
       frmObjectives.Show;
 
       // Update last login data for user.
-      TFunctions.execSQL('UPDATE tblUsers SET LastLogin = #' + DateToStr(Now) +
+      Functions.execSQL('UPDATE tblUsers SET LastLogin = #' + DateToStr(Now) +
         '# WHERE Username = "' + sUsername + '"');
 
     end;
@@ -236,9 +236,8 @@ procedure TfrmLogin.FormCreate(Sender: TObject);
 begin
 
   // Form setup.
-  TFunctions.disableSize(frmLogin);
-
-  TFunctions.makeRound(pnlHold);
+  Functions.disableSize(frmLogin);
+  Functions.makeRound(pnlHold);
 
   pnlHold.BevelInner := bvNone;
   pnlHold.BevelKind := bkTile;
@@ -252,7 +251,7 @@ procedure TfrmLogin.FormShow(Sender: TObject);
 begin
 
   // Always should be centre.
-  TFunctions.sizeCentre(frmLogin);
+  Functions.sizeCentre(frmLogin);
 
   // Clear all junk.
   edtUsername.Clear;

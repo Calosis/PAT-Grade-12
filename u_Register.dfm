@@ -2,8 +2,8 @@ object frmRegister: TfrmRegister
   Left = 0
   Top = 0
   Caption = 'Impactify | Account creation'
-  ClientHeight = 562
-  ClientWidth = 938
+  ClientHeight = 561
+  ClientWidth = 934
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frmRegister: TfrmRegister
     Left = 0
     Top = 0
     Width = 200
-    Height = 562
+    Height = 561
     AnimationDelay = 20
     AnimationStep = 15
     Color = clBackground
@@ -26,7 +26,6 @@ object frmRegister: TfrmRegister
     Placement = svpLeft
     TabOrder = 0
     StyleName = 'Windows11 MineShaft'
-    ExplicitHeight = 561
     object btnLogin: TBitBtn
       Left = 16
       Top = 72

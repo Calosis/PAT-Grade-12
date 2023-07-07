@@ -39,10 +39,25 @@ type
 
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
+    procedure resetPanels();
+    procedure showObjective(Panel: TPanel);
+
     procedure imgMenuClick(Sender: TObject);
     procedure btnBackClick(Sender: TObject);
+    procedure pnl1Click(Sender: TObject);
+    procedure pnl2Click(Sender: TObject);
+    procedure pnl3Click(Sender: TObject);
+    procedure pnl4Click(Sender: TObject);
+    procedure pnl5Click(Sender: TObject);
+    procedure pnl6Click(Sender: TObject);
+    procedure pnl7Click(Sender: TObject);
+    procedure pnl8Click(Sender: TObject);
   private
     { Private declarations }
+
+    // Public vars for other forms.
+    iSelectedObjectiveID: Integer;
+
   public
     { Public declarations }
   end;
@@ -50,6 +65,7 @@ type
 var
   frmObjectives: TfrmObjectives;
   bShown: Boolean;
+  iPanelAmount: Integer;
 
   // We don't know size, but we can use Length() to get elements.
   arrTitles: Array of string;
@@ -91,15 +107,15 @@ end;
 procedure TfrmObjectives.FormCreate(Sender: TObject);
 begin
   // Form setup.
-  TFunctions.disableSize(frmObjectives);
-  TFunctions.makeRound(pnl1);
-  TFunctions.makeRound(pnl2);
-  TFunctions.makeRound(pnl3);
-  TFunctions.makeRound(pnl4);
-  TFunctions.makeRound(pnl5);
-  TFunctions.makeRound(pnl6);
-  TFunctions.makeRound(pnl7);
-  TFunctions.makeRound(pnl8);
+  Functions.disableSize(frmObjectives);
+  Functions.makeRound(pnl1);
+  Functions.makeRound(pnl2);
+  Functions.makeRound(pnl3);
+  Functions.makeRound(pnl4);
+  Functions.makeRound(pnl5);
+  Functions.makeRound(pnl6);
+  Functions.makeRound(pnl7);
+  Functions.makeRound(pnl8);
 end;
 
 procedure TfrmObjectives.FormShow(Sender: TObject);
@@ -108,32 +124,37 @@ var
 begin
 
   // Always should be centre.
-  TFunctions.sizeCentre(frmObjectives);
+  Functions.sizeCentre(frmObjectives);
   // Set
   bShown := true;
-  I := 0;
+  iPanelAmount := 0;
 
-  imgView1.Hide;
-  imgView2.Hide;
-  imgView3.Hide;
-  imgView4.Hide;
-  imgView5.Hide;
-  imgView6.Hide;
-  imgView7.Hide;
-  imgView8.Hide;
+  // Default everything.
+  resetPanels;
+  SetLength(arrViews, 0);
 
   // Lets now populate our arrays.
   // Ready.
+  dmConnection.tblObjectives.Sort := 'O_ID ASC';
   dmConnection.tblObjectives.First;
+
   while NOT(dmConnection.tblObjectives.Eof) do
   begin
-    // Put into array
-    SetLength(arrTitles, I + 1);
-    SetLength(arrViews, I + 1);
 
-    arrTitles[I] := dmConnection.tblObjectives['Title'];
-    arrViews[I] := dmConnection.tblObjectives['ViewCount'];
-    Inc(I);
+    // Deny if panel amount is 8.
+    if (iPanelAmount = 8) then
+    begin
+      Break;
+    end;
+
+    // Put into array
+    SetLength(arrTitles, iPanelAmount + 1);
+    SetLength(arrViews, iPanelAmount + 1);
+
+    arrTitles[iPanelAmount] := dmConnection.tblObjectives['Title'];
+    arrViews[iPanelAmount] := dmConnection.tblObjectives['ViewCount'];
+
+    Inc(iPanelAmount);
 
     // Move
     dmConnection.tblObjectives.Next;
@@ -188,6 +209,104 @@ begin
     rpHold.Align := alClient;
 
   end;
+end;
+
+procedure TfrmObjectives.pnl1Click(Sender: TObject);
+begin
+  showObjective(pnl1);
+end;
+
+procedure TfrmObjectives.pnl2Click(Sender: TObject);
+begin
+  showObjective(pnl2);
+end;
+
+procedure TfrmObjectives.pnl3Click(Sender: TObject);
+begin
+  showObjective(pnl3);
+end;
+
+procedure TfrmObjectives.pnl4Click(Sender: TObject);
+begin
+  showObjective(pnl4);
+end;
+
+procedure TfrmObjectives.pnl5Click(Sender: TObject);
+begin
+  showObjective(pnl5);
+end;
+
+procedure TfrmObjectives.pnl6Click(Sender: TObject);
+begin
+  showObjective(pnl6);
+end;
+
+procedure TfrmObjectives.pnl7Click(Sender: TObject);
+begin
+  showObjective(pnl7);
+end;
+
+procedure TfrmObjectives.pnl8Click(Sender: TObject);
+begin
+  showObjective(pnl8);
+end;
+
+procedure TfrmObjectives.resetPanels;
+begin
+  // Reset all panels to default.
+  pnl1.Caption := 'Click to create an objective';
+  pnl2.Caption := 'Click to create an objective';
+  pnl3.Caption := 'Click to create an objective';
+  pnl4.Caption := 'Click to create an objective';
+  pnl5.Caption := 'Click to create an objective';
+  pnl6.Caption := 'Click to create an objective';
+  pnl7.Caption := 'Click to create an objective';
+  pnl8.Caption := 'Click to create an objective';
+
+  imgView1.Hide;
+  imgView2.Hide;
+  imgView3.Hide;
+  imgView4.Hide;
+  imgView5.Hide;
+  imgView6.Hide;
+  imgView7.Hide;
+  imgView8.Hide;
+
+end;
+
+procedure TfrmObjectives.showObjective(Panel: TPanel);
+begin
+  // Should we show the objective?
+  if (Panel.Caption <> 'Click to create an objective') then
+  begin
+
+    // Get ID.
+    dmConnection.tblObjectives.First;
+
+    while NOT(dmConnection.tblObjectives.Eof) do
+    begin
+
+      if (dmConnection.tblObjectives['Title'] = Panel.Caption) then
+      begin
+
+        iSelectedObjectiveID := dmConnection.tblObjectives['O_ID'];
+        // Stop.
+        Break;
+      end;
+      // Move.
+      dmConnection.tblObjectives.Next;
+
+    end;
+
+    // Move to new form (show).
+
+  end
+  else
+  begin
+    // Move to new form (create).
+
+  end;
+
 end;
 
 end.

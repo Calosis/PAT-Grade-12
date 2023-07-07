@@ -329,11 +329,11 @@ object frmLogin: TfrmLogin
     TabOrder = 1
     StyleName = 'Windows11 MineShaft'
     object stHeader: TStaticText
-      Left = 64
+      Left = 192
       Top = 32
-      Width = 607
+      Width = 366
       Height = 81
-      Caption = 'Login into Account'
+      Caption = 'Login Form'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -64

@@ -128,7 +128,7 @@
             <Form>frmObjectives</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="U_ObjectiveO.pas"/>
+        <DCCReference Include="u_ObjectiveO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

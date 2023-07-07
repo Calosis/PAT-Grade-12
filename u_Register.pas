@@ -112,7 +112,7 @@ begin
   begin
 
     // Run our register code.
-    TFunctions.openSQL('SELECT Username FROM tblUsers WHERE Username = "' +
+    Functions.openSQL('SELECT Username FROM tblUsers WHERE Username = "' +
       sUsername + '"');
 
     // If not empty result from SQL. (Username found)
@@ -143,7 +143,7 @@ begin
         sInput := InputBox('OTP Verification', 'OTP:', '');
 
         // Check if is number.
-        if TFunctions.isNumber(sInput) = false then
+        if (Functions.isNumber(sInput) = false) then
         begin
           ShowMessage('Please enter a number.');
           sInput := '0';
@@ -197,9 +197,8 @@ procedure TfrmRegister.FormCreate(Sender: TObject);
 begin
 
   // Form setup.
-  TFunctions.disableSize(frmRegister);
-
-  TFunctions.makeRound(pnlHold);
+  Functions.disableSize(frmRegister);
+  Functions.makeRound(pnlHold);
 
   pnlHold.BevelInner := bvNone;
   pnlHold.BevelKind := bkTile;
@@ -217,7 +216,7 @@ var
 begin
 
   // Always should be centre.
-  TFunctions.sizeCentre(frmRegister);
+  Functions.sizeCentre(frmRegister);
 
   // Clear all junk.
   edtUsername.Clear;
