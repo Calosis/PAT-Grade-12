@@ -25,7 +25,7 @@ type
   public
 
     // Create obj.
-    procedure Create(ID: Integer; Title: String; Body: String;
+    constructor Create(ID: Integer; Title: String; Body: String;
       VictoryStatus: Boolean; Donation: Boolean; CreationDate: TDateTime;
       SignatureCount: Integer; DonationAmount: Real; DonationGoal: Real);
 
@@ -59,6 +59,22 @@ implementation
 { TObjectiveO }
 
 uses u_DatabaseConnection, u_Functions;
+
+constructor TObjectiveO.Create(ID: Integer; Title, Body: String;
+  VictoryStatus, Donation: Boolean; CreationDate: TDateTime;
+  SignatureCount: Integer; DonationAmount, DonationGoal: Real);
+begin
+  // Set fields.
+  fID := ID;
+  fTitle := Title;
+  fBody := Body;
+  fVictoryStatus := VictoryStatus;
+  fDonation := Donation;
+  fCreationDate := CreationDate;
+  fSignatureCount := SignatureCount;
+  fDonationAmount := DonationAmount;
+  fDonationGoal := DonationGoal;
+end;
 
 procedure TObjectiveO.setBody(Body: String);
 begin
@@ -110,24 +126,6 @@ begin
   // Notify user.
   MessageDlg('Objective successfully updated.', TMsgDlgType.mtConfirmation,
     [TMsgDlgBtn.mbOK], 0);
-
-end;
-
-procedure TObjectiveO.Create(ID: Integer; Title, Body: String;
-  VictoryStatus, Donation: Boolean; CreationDate: TDateTime;
-  SignatureCount: Integer; DonationAmount, DonationGoal: Real);
-begin
-
-  // Set fields.
-  fID := ID;
-  fTitle := Title;
-  fBody := Body;
-  fVictoryStatus := VictoryStatus;
-  fDonation := Donation;
-  fCreationDate := CreationDate;
-  fSignatureCount := SignatureCount;
-  fDonationAmount := DonationAmount;
-  fDonationGoal := DonationGoal;
 
 end;
 

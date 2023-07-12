@@ -26,6 +26,7 @@ object frmObjectives: TfrmObjectives
     Placement = svpLeft
     TabOrder = 0
     StyleName = 'Windows11 MineShaft'
+    ExplicitHeight = 560
     object stName: TStaticText
       Left = 16
       Top = 19
@@ -220,6 +221,8 @@ object frmObjectives: TfrmObjectives
       end>
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 730
+    ExplicitHeight = 560
     DesignSize = (
       734
       561)

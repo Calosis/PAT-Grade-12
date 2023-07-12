@@ -13,7 +13,8 @@ uses
   u_Base32 in 'u_Base32.pas',
   u_Google2FA in 'u_Google2FA.pas',
   u_Objectives in 'u_Objectives.pas' {frmObjectives},
-  u_ObjectiveO in 'u_ObjectiveO.pas';
+  u_ObjectiveO in 'u_ObjectiveO.pas',
+  u_View in 'u_View.pas' {frmView};
 
 {$R *.res}
 
@@ -26,5 +27,6 @@ begin
   Application.CreateForm(TfrmRegister, frmRegister);
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TfrmObjectives, frmObjectives);
+  Application.CreateForm(TfrmView, frmView);
   Application.Run;
 end.

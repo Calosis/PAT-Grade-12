@@ -129,6 +129,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="u_ObjectiveO.pas"/>
+        <DCCReference Include="u_View.pas">
+            <Form>frmView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

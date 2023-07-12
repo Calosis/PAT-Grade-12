@@ -51,7 +51,7 @@ implementation
 {$R *.dfm}
 
 uses u_Application, u_Functions, u_Register, u_DatabaseConnection, u_Google2FA,
-  u_Objectives;
+  u_Objectives, u_ObjectiveO;
 
 procedure TfrmLogin.btnBackClick(Sender: TObject);
 begin
@@ -256,6 +256,7 @@ begin
   // Clear all junk.
   edtUsername.Clear;
   edtPassword.Clear;
+
 
 end;
 

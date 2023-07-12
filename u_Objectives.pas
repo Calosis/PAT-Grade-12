@@ -39,6 +39,7 @@ type
 
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
+
     procedure resetPanels();
     procedure showObjective(Panel: TPanel);
 
@@ -80,7 +81,7 @@ implementation
 
 {$R *.dfm}
 
-uses u_Functions, u_DatabaseConnection, u_Application;
+uses u_Functions, u_DatabaseConnection, u_Application, u_View;
 
 procedure TfrmObjectives.btnBackClick(Sender: TObject);
 begin
@@ -299,6 +300,8 @@ begin
     end;
 
     // Move to new form (show).
+    frmObjectives.Hide;
+    frmView.Show;
 
   end
   else
