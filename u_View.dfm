@@ -15,23 +15,99 @@ object frmView: TfrmView
   OnCreate = FormCreate
   OnShow = FormShow
   TextHeight = 15
-  object pnlHold: TPanel
-    Left = 199
-    Top = -60
-    Width = 868
-    Height = 682
-    BorderWidth = 5
-    ParentBackground = False
-    ParentColor = True
-    ShowCaption = False
+  object rpHold: TRelativePanel
+    Left = 200
+    Top = 0
+    Width = 738
+    Height = 562
+    ControlCollection = <
+      item
+        Control = stHeader
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = redBody
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = stBody
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = imgMenu
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end>
+    Align = alClient
     TabOrder = 1
-    StyleName = 'Windows11 MineShaft'
+    ExplicitWidth = 734
+    ExplicitHeight = 561
     DesignSize = (
-      868
-      682)
+      738
+      562)
+    object stHeader: TStaticText
+      AlignWithMargins = True
+      Left = 248
+      Top = 0
+      Width = 217
+      Height = 78
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Empty'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -64
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object redBody: TRichEdit
+      Left = 16
+      Top = 120
+      Width = 249
+      Height = 89
+      Anchors = []
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object stBody: TStaticText
+      Left = 16
+      Top = 103
+      Width = 70
+      Height = 19
+      Anchors = []
+      Caption = 'Information:'
+      TabOrder = 2
+    end
     object imgMenu: TImage
-      Left = 704
-      Top = 72
+      Left = 696
+      Top = 8
       Width = 33
       Height = 33
       Cursor = crHandPoint
@@ -463,8 +539,7 @@ object frmView: TfrmView
     Placement = svpLeft
     TabOrder = 0
     StyleName = 'Windows11 MineShaft'
-    ExplicitLeft = 8
-    ExplicitTop = 8
+    ExplicitHeight = 561
     object btnBack: TBitBtn
       Left = 16
       Top = 440
@@ -607,6 +682,7 @@ object frmView: TfrmView
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      OnClick = btnBackClick
     end
   end
 end

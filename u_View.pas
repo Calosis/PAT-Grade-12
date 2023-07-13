@@ -6,13 +6,16 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.WinXCtrls, Vcl.Imaging.pngimage;
+  Vcl.WinXCtrls, Vcl.Imaging.pngimage, Vcl.ComCtrls;
 
 type
   TfrmView = class(TForm)
     svSide: TSplitView;
     btnBack: TBitBtn;
-    pnlHold: TPanel;
+    rpHold: TRelativePanel;
+    stHeader: TStaticText;
+    redBody: TRichEdit;
+    stBody: TStaticText;
     imgMenu: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -21,6 +24,7 @@ type
     procedure CreateParams(var Params: TCreateParams); override;
     procedure FormShow(Sender: TObject);
     procedure imgMenuClick(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,12 +33,20 @@ type
 
 var
   frmView: TfrmView;
+  bShown: Boolean;
 
 implementation
 
 {$R *.dfm}
 
-uses u_Functions;
+uses u_Functions, u_Objectives, u_ObjectiveO;
+
+procedure TfrmView.btnBackClick(Sender: TObject);
+begin
+  // Move.
+  frmView.Hide;
+  frmObjectives.Show;
+end;
 
 procedure TfrmView.CreateParams(var Params: TCreateParams);
 begin
@@ -58,9 +70,27 @@ begin
 end;
 
 procedure TfrmView.FormShow(Sender: TObject);
+var
+  objLocal: TObjectiveO;
+  iIndex: Integer;
 begin
   // Always should be centre.
   Functions.sizeCentre(frmView);
+
+  // Clear all old stuff.
+  redBody.Clear;
+
+  // Set.
+  bShown := true;
+
+  iIndex := Functions.findObjectArray(frmObjectives.arrObjects,
+    frmObjectives.iSelectedObjectiveID);
+
+  objLocal := frmObjectives.arrObjects[iIndex];
+
+  // Grab from obj.
+  stHeader.Caption := objLocal.getTitle;
+  redBody.Lines.Add(objLocal.getBody);
 end;
 
 procedure TfrmView.imgMenuClick(Sender: TObject);
@@ -79,7 +109,6 @@ begin
     rpHold.Width := 950;
     rpHold.Alignment := taCenter;
     rpHold.Align := alRight;
-
   end
   else
   begin
@@ -94,7 +123,6 @@ begin
     rpHold.Width := 600;
     rpHold.Alignment := taCenter;
     rpHold.Align := alClient;
-
   end;
 end;
 

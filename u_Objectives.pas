@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCtrls,
-  Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.Buttons, u_ObjectiveO;
 
 type
   TfrmObjectives = class(TForm)
@@ -56,15 +56,20 @@ type
   private
     { Private declarations }
 
+  public
+    { Public declarations }
+
     // Public vars for other forms.
     iSelectedObjectiveID: Integer;
 
-  public
-    { Public declarations }
+    // All our objective objects.
+    arrObjects: Array of TObjectiveO;
   end;
 
 var
   frmObjectives: TfrmObjectives;
+
+  // Added.
   bShown: Boolean;
   iPanelAmount: Integer;
 
@@ -122,6 +127,15 @@ end;
 procedure TfrmObjectives.FormShow(Sender: TObject);
 var
   I: Integer;
+  objObjective: TObjectiveO;
+
+  // Object vars.
+  ID, SignatureCount: Integer;
+  Title, Body: String;
+  VictoryStatus, Donation: Boolean;
+  CreationDate: TDateTime;
+  DonationAmount, DonationGoal: Real;
+
 begin
 
   // Always should be centre.
@@ -151,6 +165,7 @@ begin
     // Put into array
     SetLength(arrTitles, iPanelAmount + 1);
     SetLength(arrViews, iPanelAmount + 1);
+    SetLength(arrObjects, iPanelAmount + 1);
 
     arrTitles[iPanelAmount] := dmConnection.tblObjectives['Title'];
     arrViews[iPanelAmount] := dmConnection.tblObjectives['ViewCount'];
@@ -173,6 +188,29 @@ begin
     arrPanels[I].Caption := arrTitles[I];
     arrImages[I].Hint := arrImages[I].Hint + IntToStr(arrViews[I]);
     arrImages[I].Show;
+  end;
+
+  // Create Objects and put into array.
+  for I := 0 to Length(arrTitles) - 1 do
+  begin
+
+    // Ready all vars.
+    ID := Functions.findID(arrTitles[I]);
+    Title := arrTitles[I];
+    Body := Functions.findBody(ID);
+    VictoryStatus := Functions.findVictoryStatus(ID);
+    Donation := Functions.findDonation(ID);
+    CreationDate := Functions.findCreationDate(ID);
+    SignatureCount := Functions.findSignatureCount(ID);
+    DonationAmount := Functions.findDonationAmount(ID);
+    DonationGoal := Functions.findDonationGoal(ID);
+
+    // Finally, create object and add to array.
+    objObjective := TObjectiveO.create(ID, Title, Body, VictoryStatus, Donation,
+      CreationDate, SignatureCount, DonationAmount, DonationGoal);
+
+    arrObjects[I] := objObjective;
+
   end;
 
 end;
@@ -272,7 +310,6 @@ begin
   imgView6.Hide;
   imgView7.Hide;
   imgView8.Hide;
-
 end;
 
 procedure TfrmObjectives.showObjective(Panel: TPanel);
@@ -286,17 +323,14 @@ begin
 
     while NOT(dmConnection.tblObjectives.Eof) do
     begin
-
       if (dmConnection.tblObjectives['Title'] = Panel.Caption) then
       begin
-
         iSelectedObjectiveID := dmConnection.tblObjectives['O_ID'];
         // Stop.
         Break;
       end;
       // Move.
       dmConnection.tblObjectives.Next;
-
     end;
 
     // Move to new form (show).

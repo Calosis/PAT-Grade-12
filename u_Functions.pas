@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels,
   Vcl.WinXCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Imaging.pngimage, Vcl.ComCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, u_ObjectiveO;
 
 type
   Functions = class(TObject)
@@ -18,11 +18,22 @@ type
     class procedure sizeCentre(Form: TForm);
     class procedure disableSize(Form: TForm);
     class procedure makeRound(Control: TWinControl);
-    class function isNumber(Input: String): Boolean;
     class procedure openSQL(sSQL: String);
     class procedure execSQL(sSQL: String);
     class procedure resetDB();
+    class function isNumber(Input: String): Boolean;
 
+    // Object stuff.
+    class function findID(Title: String): Integer;
+    class function findBody(ID: Integer): String;
+    class function findVictoryStatus(ID: Integer): Boolean;
+    class function findDonation(ID: Integer): Boolean;
+    class function findCreationDate(ID: Integer): TDateTime;
+    class function findSignatureCount(ID: Integer): Integer;
+    class function findDonationAmount(ID: Integer): Real;
+    class function findDonationGoal(ID: Integer): Real;
+    class function findObjectArray(ArrayName: Array of TObjectiveO;
+      ID: Integer): Integer;
   end;
 
 implementation
@@ -35,11 +46,9 @@ uses u_DatabaseConnection;
 
 class procedure Functions.disableSize(Form: TForm);
 begin
-
   // Disable window resize.
   Form.BorderStyle := bsDialog;
   Form.BorderIcons := Form.BorderIcons;
-
 end;
 
 class procedure Functions.execSQL(sSQL: String);
@@ -48,6 +57,97 @@ begin
   dmConnection.qrQuery.SQL.Clear;
   dmConnection.qrQuery.SQL.ADD(sSQL);
   dmConnection.qrQuery.execSQL;
+end;
+
+class function Functions.findBody(ID: Integer): String;
+begin
+  // SQL.
+  openSQL('SELECT Body FROM tblObjectives WHERE O_ID = ' + IntToStr(ID));
+  Result := dmConnection.qrQuery.Fields[0].AsString;
+end;
+
+class function Functions.findCreationDate(ID: Integer): TDateTime;
+begin
+  // SQL.
+  openSQL('SELECT CreationDate FROM tblObjectives WHERE O_ID = ' +
+    IntToStr(ID));
+  Result := StrToDate(dmConnection.qrQuery.Fields[0].AsString);
+end;
+
+class function Functions.findDonation(ID: Integer): Boolean;
+begin
+  // SQL.
+  openSQL('SELECT Donation FROM tblObjectives WHERE O_ID = ' + IntToStr(ID));
+  Result := StrToBool(dmConnection.qrQuery.Fields[0].AsString);
+end;
+
+class function Functions.findDonationAmount(ID: Integer): Real;
+begin
+  // SQL.
+  openSQL('SELECT DonationAmount FROM tblObjectives WHERE O_ID = ' +
+    IntToStr(ID));
+  Result := StrToFloat(dmConnection.qrQuery.Fields[0].AsString);
+end;
+
+class function Functions.findDonationGoal(ID: Integer): Real;
+begin
+  // SQL.
+  openSQL('SELECT DonationGoal FROM tblObjectives WHERE O_ID = ' +
+    IntToStr(ID));
+  Result := StrToFloat(dmConnection.qrQuery.Fields[0].AsString);
+end;
+
+class function Functions.findID(Title: String): Integer;
+begin
+
+  // Find O_ID based on Title input.
+  // Ready.
+  dmConnection.tblObjectives.First;
+
+  while NOT(dmConnection.tblObjectives.Eof) do
+  begin
+    if (dmConnection.tblObjectives['Title'] = Title) then
+    begin
+
+      // Get U_ID and break.
+      Result := dmConnection.tblObjectives['O_ID'];
+      Exit;
+    end;
+    // Move.
+    dmConnection.tblObjectives.Next;
+  end;
+end;
+
+class function Functions.findObjectArray(ArrayName: Array of TObjectiveO;
+  ID: Integer): Integer;
+var
+  I: Integer;
+begin
+  // Finds object in array based on O_ID.
+  for I := 0 to Length(ArrayName) - 1 do
+  begin
+    if (ArrayName[I].getID = ID) then
+    begin
+      Result := I;
+      Exit;
+    end;
+  end;
+end;
+
+class function Functions.findSignatureCount(ID: Integer): Integer;
+begin
+  // SQL.
+  openSQL('SELECT SignatureCount FROM tblObjectives WHERE O_ID = ' +
+    IntToStr(ID));
+  Result := StrToInt(dmConnection.qrQuery.Fields[0].AsString);
+end;
+
+class function Functions.findVictoryStatus(ID: Integer): Boolean;
+begin
+  // SQL.
+  openSQL('SELECT VictoryStatus FROM tblObjectives WHERE O_ID = ' +
+    IntToStr(ID));
+  Result := StrToBool(dmConnection.qrQuery.Fields[0].AsString);
 end;
 
 class function Functions.isNumber(Input: String): Boolean;

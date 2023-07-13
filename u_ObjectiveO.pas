@@ -113,7 +113,6 @@ end;
 
 procedure TObjectiveO.updateDB;
 begin
-
   Functions.execSQL('UPDATE tblObjectives SET Title = ' + '"' + fTitle + '"' +
     ', ' + 'Body = ' + '"' + fBody + '"' + ', ' + 'VictoryStatus = ' + '"' +
     BoolToStr(fVictoryStatus) + '"' + ', ' + 'CreationDate = ' + '#' +
@@ -126,7 +125,6 @@ begin
   // Notify user.
   MessageDlg('Objective successfully updated.', TMsgDlgType.mtConfirmation,
     [TMsgDlgBtn.mbOK], 0);
-
 end;
 
 function TObjectiveO.getVictoryStatus: Boolean;
