@@ -15,8 +15,8 @@ type
 
     conApplication: TADOConnection;
 
-    tblUsers, tblObjectives, tblLink: TADOTable;
-    dsrUsers, dsrObjectives, dsrLink, dsrSQL: TDataSource;
+    tblUsers, tblObjectives, tblLink, tblSignatures: TADOTable;
+    dsrUsers, dsrObjectives, dsrLink, dsrSignatures, dsrSQL: TDataSource;
     qrQuery: TADOQuery;
 
   end;
@@ -39,11 +39,13 @@ begin
   tblUsers := TADOTable.Create(dmConnection);
   tblObjectives := TADOTable.Create(dmConnection);
   tblLink := TADOTable.Create(dmConnection);
+  tblSignatures := TADOTable.Create(dmConnection);
 
   // Dynamically create modules on form. (DataSource)
   dsrUsers := TDataSource.Create(dmConnection);
   dsrObjectives := TDataSource.Create(dmConnection);
   dsrLink := TDataSource.Create(dmConnection);
+  dsrSignatures := TDataSource.Create(dmConnection);
 
   dsrSQL := TDataSource.Create(dmConnection);
 
@@ -73,6 +75,9 @@ begin
   tblLink.Connection := conApplication;
   tblLink.TableName := 'tblLink';
 
+  tblSignatures.Connection := conApplication;
+  tblSignatures.TableName := 'tblSignatures';
+
   // SQL init.
   qrQuery.Connection := conApplication;
   dsrSQL.DataSet := qrQuery;
@@ -81,11 +86,13 @@ begin
   dsrUsers.DataSet := tblUsers;
   dsrObjectives.DataSet := tblObjectives;
   dsrLink.DataSet := tblLink;
+  dsrSignatures.DataSet := tblSignatures;
 
   // Ready for use.
   tblUsers.Open;
   tblObjectives.Open;
   tblLink.Open;
+  tblSignatures.Open;
 
 end;
 

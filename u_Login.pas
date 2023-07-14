@@ -21,6 +21,7 @@ type
     btnLogin: TBitBtn;
     tOTP: TTimer;
     Button1: TButton;
+
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
 
@@ -39,6 +40,10 @@ type
     { Private declarations }
   public
     { Public declarations }
+
+    // Global.
+    iLoginUserID: Integer;
+
   end;
 
 var
@@ -199,6 +204,11 @@ begin
       Functions.execSQL('UPDATE tblUsers SET LastLogin = #' + DateToStr(Now) +
         '# WHERE Username = "' + sUsername + '"');
 
+      // Set global ID.
+      Functions.openSQL('SELECT U_ID FROM tblUsers WHERE Username = "' +
+        sUsername + '"');
+      iLoginUserID := StrToInt(dmConnection.qrQuery.Fields[0].AsString);
+
     end;
   end;
 end;
@@ -234,7 +244,6 @@ end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);
 begin
-
   // Form setup.
   Functions.disableSize(frmLogin);
   Functions.makeRound(pnlHold);
@@ -244,25 +253,20 @@ begin
   pnlHold.BevelOuter := bvRaised;
 
   edtPassword.PasswordChar := '*';
-
 end;
 
 procedure TfrmLogin.FormShow(Sender: TObject);
 begin
-
   // Always should be centre.
   Functions.sizeCentre(frmLogin);
 
   // Clear all junk.
   edtUsername.Clear;
   edtPassword.Clear;
-
-
 end;
 
 function TfrmLogin.isEmpty: Boolean;
 begin
-
   // Set.
   Result := true;
 

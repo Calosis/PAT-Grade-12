@@ -138,6 +138,10 @@ var
 
 begin
 
+  // Make sure we are working with latest.
+  dmConnection.tblObjectives.close;
+  dmConnection.tblObjectives.open;
+
   // Always should be centre.
   Functions.sizeCentre(frmObjectives);
   // Set
@@ -153,6 +157,7 @@ begin
   dmConnection.tblObjectives.Sort := 'O_ID ASC';
   dmConnection.tblObjectives.First;
 
+  // ** TODO: Fix Array (Find a way to "clear" it so we don't get wrong data.)
   while NOT(dmConnection.tblObjectives.Eof) do
   begin
 
