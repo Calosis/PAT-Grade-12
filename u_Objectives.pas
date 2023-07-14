@@ -148,16 +148,27 @@ begin
   bShown := true;
   iPanelAmount := 0;
 
+  // Safe reset dynamic array.
+  SetLength(arrViews, 0);
+  SetLength(arrTitles, 0);
+  SetLength(arrObjects, 0);
+
+  Finalize(arrViews);
+  Finalize(arrTitles);
+  Finalize(arrObjects);
+
+  arrViews := nil;
+  arrTitles := nil;
+  arrObjects := nil;
+
   // Default everything.
   resetPanels;
-  SetLength(arrViews, 0);
 
   // Lets now populate our arrays.
   // Ready.
   dmConnection.tblObjectives.Sort := 'O_ID ASC';
   dmConnection.tblObjectives.First;
 
-  // ** TODO: Fix Array (Find a way to "clear" it so we don't get wrong data.)
   while NOT(dmConnection.tblObjectives.Eof) do
   begin
 
@@ -191,7 +202,7 @@ begin
   for I := 0 to Length(arrTitles) - 1 do
   begin
     arrPanels[I].Caption := arrTitles[I];
-    arrImages[I].Hint := arrImages[I].Hint + IntToStr(arrViews[I]);
+    arrImages[I].Hint := 'Views: ' + IntToStr(arrViews[I]);
     arrImages[I].Show;
   end;
 
