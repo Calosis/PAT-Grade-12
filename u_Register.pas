@@ -230,7 +230,7 @@ begin
   try
     // Generate auth string.
     QRCode.Data := 'otpauth://totp/Impactify' + '?secret=' + sKeySecret +
-      '&issuer=' + 'Delphi';
+      '&issuer=Delphi';
 
     QRCode.Encoding := TQRCodeEncoding(0);
     QRCode.QuietZone := StrToIntDef('Auto', 4);

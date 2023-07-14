@@ -550,7 +550,8 @@ begin
 
     imgDonationAmount.Show;
     lblDonations.Show;
-
+    btnDonate.Show;
+    stDonate.Show;
   end;
 
   // Change status of victory.
