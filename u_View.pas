@@ -379,6 +379,9 @@ begin
   updatePanel;
 
   // Load comments.
+  sName := 'Comments' + IntToStr(frmObjectives.iSelectedObjectiveID) + '.txt';
+  AssignFile(tFile, sName);
+
   loadComments;
 
   // Should we enabled edits?
@@ -463,9 +466,6 @@ procedure TfrmView.loadComments;
 var
   sTemp: String;
 begin
-
-  sName := 'Comments' + IntToStr(frmObjectives.iSelectedObjectiveID) + '.txt';
-  AssignFile(tFile, sName);
 
   // Create File if not exists.
   if NOT(FileExists(sName)) then
