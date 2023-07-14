@@ -86,7 +86,7 @@ implementation
 
 {$R *.dfm}
 
-uses u_Functions, u_DatabaseConnection, u_Application, u_View;
+uses u_Functions, u_DatabaseConnection, u_Application, u_View, u_Create;
 
 procedure TfrmObjectives.btnBackClick(Sender: TObject);
 begin
@@ -348,18 +348,16 @@ begin
       // Move.
       dmConnection.tblObjectives.Next;
     end;
-
     // Move to new form (show).
     frmObjectives.Hide;
     frmView.Show;
-
   end
   else
   begin
     // Move to new form (create).
-
+    frmObjectives.Hide;
+    frmCreate.Show;
   end;
-
 end;
 
 end.

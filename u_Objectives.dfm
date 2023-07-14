@@ -1,7 +1,7 @@
 object frmObjectives: TfrmObjectives
   Left = 0
   Top = 0
-  Caption = 'Impactify | User'
+  Caption = 'Impactify | Objectives'
   ClientHeight = 561
   ClientWidth = 934
   Color = clBtnFace
@@ -1345,7 +1345,7 @@ object frmObjectives: TfrmObjectives
       Width = 145
       Height = 65
       Cursor = crHandPoint
-      Hint = 'Go back to welome screen.'
+      Hint = 'Go back to welcome screen.'
       Glyph.Data = {
         42100000424D4210000000000000420000002800000020000000200000000100
         20000300000000100000EC000000EC00000000000000000000000000FF0000FF

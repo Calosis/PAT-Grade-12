@@ -113,18 +113,13 @@ end;
 
 procedure TObjectiveO.updateDB;
 begin
-  Functions.execSQL('UPDATE tblObjectives SET Title = ' + '"' + fTitle + '"' +
-    ', ' + 'Body = ' + '"' + fBody + '"' + ', ' + 'VictoryStatus = ' + '"' +
-    BoolToStr(fVictoryStatus) + '"' + ', ' + 'CreationDate = ' + '#' +
-    DateToStr(fCreationDate) + '#' + ', ' + 'Donation = ' + '"' +
-    BoolToStr(fDonation) + '"' + ', ' + 'SignatureCount = ' +
-    IntToStr(fSignatureCount) + ', ' + 'ViewCount = ' + IntToStr(fViewCount) +
-    ', ' + 'DonationAmount = ' + FloatToStr(fDonationAmount) + ', ' +
-    'DonationGoal = ' + FloatToStr(fDonationGoal));
-
-  // Notify user.
-  MessageDlg('Objective successfully updated.', TMsgDlgType.mtConfirmation,
-    [TMsgDlgBtn.mbOK], 0);
+  Functions.execSQL
+    ('INSERT INTO tblObjectives(Title, Body, VictoryStatus, CreationDate, Donation, SignatureCount, ViewCount, DonationAmount, DonationGoal) VALUES('
+    + '"' + fTitle + '"' + ', ' + '"' + fBody + '"' + ', ' +
+    BoolToStr(fVictoryStatus) + ', ' + '#' + DateToStr(fCreationDate) + '#' +
+    ', ' + BoolToStr(fDonation) + ', ' + IntToStr(fSignatureCount) + ', ' +
+    IntToStr(fViewCount) + ', ' + FloatToStr(fDonationAmount) + ', ' +
+    FloatToStr(fDonationGoal) + ')');
 end;
 
 function TObjectiveO.getVictoryStatus: Boolean;

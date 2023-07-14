@@ -133,6 +133,10 @@
             <Form>frmView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="u_Create.pas">
+            <Form>frmCreate</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

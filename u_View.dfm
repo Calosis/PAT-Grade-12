@@ -1553,16 +1553,16 @@ object frmView: TfrmView
       562)
     object stHeader: TStaticText
       AlignWithMargins = True
-      Left = 63
-      Top = 8
-      Width = 370
-      Height = 73
+      Left = 30
+      Top = 19
+      Width = 211
+      Height = 46
       Align = alTop
       Alignment = taCenter
       Caption = 'Placeholder'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -64
+      Font.Height = -35
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
@@ -2023,9 +2023,9 @@ object frmView: TfrmView
       Caption = 'Created on: '
     end
     object Shape1: TShape
-      Left = 48
+      Left = 16
       Top = 8
-      Width = 625
+      Width = 657
       Height = 81
       Anchors = []
       Pen.Mode = pmNotXor
@@ -2723,7 +2723,7 @@ object frmView: TfrmView
       TabOrder = 9
     end
     object btnEditTitle: TBitBtn
-      Left = 630
+      Left = 631
       Top = 19
       Width = 34
       Height = 34
@@ -3327,7 +3327,7 @@ object frmView: TfrmView
       Width = 145
       Height = 65
       Cursor = crHandPoint
-      Hint = 'Go back to welome screen.'
+      Hint = 'Go back to objective page.'
       Glyph.Data = {
         42100000424D4210000000000000420000002800000020000000200000000100
         20000300000000100000EC000000EC00000000000000000000000000FF0000FF

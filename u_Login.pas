@@ -125,8 +125,9 @@ begin
     begin
       MessageDlg('Password is incorrect, please retry.', TMsgDlgType.mtError,
         [TMsgDlgBtn.mbOK], 0);
-      edtPassword.Font.Color := clRed;
-      edtPassword.Focused;
+
+      edtPassword.SetFocus;
+
       bAuth := false;
 
       // Dont allow any more code to run...
@@ -279,10 +280,10 @@ begin
     MessageDlg('Please input a username.', TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK], 0);
 
-    edtUsername.Focused;
-    edtUsername.Color := clRed;
+    edtUsername.SetFocus;
 
   end;
+
   if (sPassword = NullAsStringValue) then
   begin
 
@@ -291,9 +292,7 @@ begin
     MessageDlg('Please input a password.', TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK], 0);
 
-    edtPassword.Focused;
-    edtPassword.Color := clRed;
-
+    edtPassword.SetFocus;
   end;
 end;
 

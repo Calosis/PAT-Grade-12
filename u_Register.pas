@@ -123,9 +123,7 @@ begin
       MessageDlg('Username is already used.', TMsgDlgType.mtError,
         [TMsgDlgBtn.mbOK], 0);
 
-      edtUsername.Focused;
-      edtUsername.Font.Color := clRed;
-
+      edtUsername.SetFocus;
     end;
 
     // Username not found, so we can register.
@@ -182,15 +180,12 @@ begin
   // Set style sheet so Windows knows its another "window".
   Params.ExStyle := Params.ExStyle or WS_EX_APPWINDOW;
   Params.WndParent := GetDesktopWindow;
-
 end;
 
 procedure TfrmRegister.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-
   // Fix multi form issues.
   Application.Terminate;
-
 end;
 
 procedure TfrmRegister.FormCreate(Sender: TObject);
@@ -260,7 +255,6 @@ begin
     QRCode.Free;
   end;
   pbQR.Repaint;
-
 end;
 
 procedure TfrmRegister.imgHelpClick(Sender: TObject);
@@ -306,8 +300,7 @@ begin
       [TMsgDlgBtn.mbOK], 0);
 
     // Notify.
-    edtUsername.Focused;
-    edtUsername.Font.Color := clRed;
+    edtUsername.SetFocus;
 
     // Set.
     bUsernameE := True;
@@ -322,8 +315,7 @@ begin
       TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
 
     // Notify.
-    edtPassword.Focused;
-    edtPassword.Font.Color := clRed;
+    edtPassword.SetFocus;
 
     // Set.
     bPasswordE := True;
@@ -338,8 +330,7 @@ begin
       TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
 
     // Notify.
-    edtPasswordConfirm.Focused;
-    edtPasswordConfirm.Font.Color := clRed;
+    edtPasswordConfirm.SetFocus;
 
     // Set.
     bPasswordCE := True;
@@ -407,7 +398,6 @@ begin
     MessageDlg('Password needs to contain 1 special character.',
       TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   end;
-
 end;
 
 procedure TfrmRegister.pbQRPaint(Sender: TObject);
@@ -435,7 +425,6 @@ begin
       Trunc(Scale * QRCodeBitmap.Height)), QRCodeBitmap);
 
   end;
-
 end;
 
 procedure TfrmRegister.tOTPTimer(Sender: TObject);
