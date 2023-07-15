@@ -1627,11 +1627,11 @@ object frmLogin: TfrmLogin
     TabOrder = 1
     StyleName = 'Windows11 MineShaft'
     object stHeader: TStaticText
-      Left = 192
+      Left = 144
       Top = 32
-      Width = 366
+      Width = 461
       Height = 81
-      Caption = 'Login Form'
+      Caption = 'Account Login'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -64
@@ -1649,7 +1649,7 @@ object frmLogin: TfrmLogin
       TabOrder = 1
       object edtUsername: TLabeledEdit
         Left = 24
-        Top = 31
+        Top = 55
         Width = 169
         Height = 23
         Hint = 'Account username for Impactify.'
@@ -1663,7 +1663,7 @@ object frmLogin: TfrmLogin
       end
       object edtPassword: TLabeledEdit
         Left = 24
-        Top = 77
+        Top = 101
         Width = 169
         Height = 23
         Hint = 'Enter account password.'
@@ -1677,7 +1677,7 @@ object frmLogin: TfrmLogin
       end
       object btnLogin: TBitBtn
         Left = 24
-        Top = 117
+        Top = 161
         Width = 169
         Height = 65
         Cursor = crHandPoint
@@ -1825,7 +1825,7 @@ object frmLogin: TfrmLogin
         Top = 280
         Width = 75
         Height = 25
-        Caption = 'Button1'
+        Caption = 'dev bypass'
         TabOrder = 3
         OnClick = Button1Click
       end

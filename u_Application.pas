@@ -26,6 +26,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure btnResetClick(Sender: TObject);
+    procedure btnAdminClick(Sender: TObject);
 
   private
   public
@@ -40,7 +41,55 @@ implementation
 
 {$R *.dfm}
 
-uses u_Functions, u_Register, u_Login, u_DatabaseConnection;
+uses u_Functions, u_Register, u_Login, u_DatabaseConnection, u_Admin;
+
+procedure TfrmApplication.btnAdminClick(Sender: TObject);
+var
+  sUsername: String;
+begin
+  // Grab from user.
+  sUsername := InputBox('Impactify Admin', 'Admin Username:', '');
+
+  // Check.
+  if (sUsername = NullAsStringValue) then
+  begin
+    MessageDlg('Please enter a username.', TMsgDlgType.mtError,
+      [TMsgDlgBtn.mbOK], 0);
+    Exit;
+  end;
+
+  // Find user in database.
+  Functions.openSQL('SELECT Username FROM tblUsers WHERE Username = "' +
+    sUsername + '"');
+
+  // If not empty result from SQL. (Username found)
+  if NOT((dmConnection.qrQuery.EOF)) then
+  begin
+
+    Functions.openSQL('SELECT SuperUser FROM tblUsers WHERE Username = "' +
+      sUsername + '"');
+
+    if (dmConnection.qrQuery.Fields[0].AsBoolean = true) then
+    begin
+      // Allow in.
+      frmApplication.Hide;
+      frmAdmin.Show;
+    end
+    else
+    begin
+      // Notify user they are not a superuser.
+      MessageDlg('This user is not an admin.', TMsgDlgType.mtError,
+        [TMsgDlgBtn.mbOK], 0);
+      Exit;
+    end;
+  end
+  else
+  begin
+    // Username not found.
+    MessageDlg('This username does not exist.', TMsgDlgType.mtError,
+      [TMsgDlgBtn.mbOK], 0);
+  end;
+end;
 
 procedure TfrmApplication.btnLoginClick(Sender: TObject);
 begin
@@ -64,7 +113,6 @@ end;
 
 procedure TfrmApplication.FormCreate(Sender: TObject);
 begin
-
   // Don't allow resize.
   Functions.disableSize(frmApplication);
 
@@ -73,7 +121,6 @@ begin
 
   stName.Alignment := taCenter;
   redInform.Alignment := taCenter;
-
 end;
 
 procedure TfrmApplication.FormShow(Sender: TObject);
@@ -87,29 +134,24 @@ end;
 
 procedure TfrmApplication.imgMenuClick(Sender: TObject);
 begin
-
   // Sliding panel logic.
   if (bShown = true) then
   begin
-
     svSide.Opened := false;
 
     pnlApplication.BevelInner := bvNone;
     pnlApplication.BevelKind := bkNone;
     pnlApplication.BevelOuter := bvNone;
     bShown := false;
-
   end
   else
   begin
-
     svSide.Opened := true;
 
     pnlApplication.BevelInner := bvNone;
     pnlApplication.BevelKind := bkNone;
     pnlApplication.BevelOuter := bvRaised;
     bShown := true;
-
   end;
 end;
 

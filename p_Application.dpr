@@ -15,7 +15,8 @@ uses
   u_Objectives in 'u_Objectives.pas' {frmObjectives},
   u_ObjectiveO in 'u_ObjectiveO.pas',
   u_View in 'u_View.pas' {frmView},
-  u_Create in 'u_Create.pas' {frmCreate};
+  u_Create in 'u_Create.pas' {frmCreate},
+  u_Admin in 'u_Admin.pas' {frmAdmin};
 
 {$R *.res}
 
@@ -30,5 +31,6 @@ begin
   Application.CreateForm(TfrmObjectives, frmObjectives);
   Application.CreateForm(TfrmView, frmView);
   Application.CreateForm(TfrmCreate, frmCreate);
+  Application.CreateForm(TfrmAdmin, frmAdmin);
   Application.Run;
 end.

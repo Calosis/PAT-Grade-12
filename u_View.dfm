@@ -1473,15 +1473,6 @@ object frmView: TfrmView
         AlignVerticalCenterWithPanel = False
       end
       item
-        Control = lblComments
-        AlignBottomWithPanel = False
-        AlignHorizontalCenterWithPanel = False
-        AlignLeftWithPanel = False
-        AlignRightWithPanel = False
-        AlignTopWithPanel = False
-        AlignVerticalCenterWithPanel = False
-      end
-      item
         Control = btnComment
         AlignBottomWithPanel = False
         AlignHorizontalCenterWithPanel = False
@@ -1543,6 +1534,15 @@ object frmView: TfrmView
         AlignRightWithPanel = False
         AlignTopWithPanel = False
         AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = stComment
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
       end>
     Align = alClient
     TabOrder = 1
@@ -1554,7 +1554,7 @@ object frmView: TfrmView
     object stHeader: TStaticText
       AlignWithMargins = True
       Left = 30
-      Top = 19
+      Top = 27
       Width = 211
       Height = 46
       Align = alTop
@@ -1585,7 +1585,7 @@ object frmView: TfrmView
     end
     object stBody: TStaticText
       Left = 16
-      Top = 103
+      Top = 111
       Width = 70
       Height = 19
       Anchors = []
@@ -2245,6 +2245,7 @@ object frmView: TfrmView
       Top = 265
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to add your signature.'
       Anchors = []
       Glyph.Data = {
@@ -2385,9 +2386,9 @@ object frmView: TfrmView
       OnClick = btnSignClick
     end
     object stSign: TStaticText
-      Left = 575
-      Top = 271
-      Width = 99
+      Left = 574
+      Top = 280
+      Width = 100
       Height = 19
       Anchors = []
       Caption = 'Sign this petition: '
@@ -2395,9 +2396,10 @@ object frmView: TfrmView
     end
     object btnDonate: TBitBtn
       Left = 683
-      Top = 370
+      Top = 369
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to add your signature.'
       Anchors = []
       Glyph.Data = {
@@ -2538,9 +2540,9 @@ object frmView: TfrmView
       OnClick = btnDonateClick
     end
     object stDonate: TStaticText
-      Left = 583
-      Top = 385
-      Width = 94
+      Left = 574
+      Top = 369
+      Width = 95
       Height = 19
       Anchors = []
       Caption = 'Donate and help:'
@@ -2561,19 +2563,12 @@ object frmView: TfrmView
       ParentFont = False
       TabOrder = 7
     end
-    object lblComments: TLabel
-      Left = 578
-      Top = 325
-      Width = 80
-      Height = 15
-      Anchors = []
-      Caption = 'Add comment:'
-    end
     object btnComment: TBitBtn
       Left = 680
       Top = 317
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to add your signature.'
       Anchors = []
       Glyph.Data = {
@@ -2723,10 +2718,11 @@ object frmView: TfrmView
       TabOrder = 9
     end
     object btnEditTitle: TBitBtn
-      Left = 631
-      Top = 19
+      Left = 639
+      Top = 8
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to edit title.'
       Anchors = []
       Glyph.Data = {
@@ -2868,10 +2864,11 @@ object frmView: TfrmView
       OnClick = btnEditTitleClick
     end
     object btnEditBody: TBitBtn
-      Left = 92
-      Top = 95
+      Left = 335
+      Top = 128
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to edit body.'
       Anchors = []
       Glyph.Data = {
@@ -3016,6 +3013,7 @@ object frmView: TfrmView
       Top = 328
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to edit body.'
       Anchors = []
       Glyph.Data = {
@@ -3168,6 +3166,7 @@ object frmView: TfrmView
       Top = 392
       Width = 34
       Height = 34
+      Cursor = crHandPoint
       Hint = 'Click here to edit body.'
       Anchors = []
       Glyph.Data = {
@@ -3306,6 +3305,15 @@ object frmView: TfrmView
       ShowHint = True
       TabOrder = 13
       OnClick = btnEditVictoryClick
+    end
+    object stComment: TStaticText
+      Left = 573
+      Top = 325
+      Width = 93
+      Height = 19
+      Anchors = []
+      Caption = 'Add a comment:'
+      TabOrder = 14
     end
   end
   object svSide: TSplitView

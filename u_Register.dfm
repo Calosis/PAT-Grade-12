@@ -1661,7 +1661,7 @@ object frmRegister: TfrmRegister
         Top = 336
         Width = 42
         Height = 41
-        Cursor = crHandPoint
+        Cursor = crHelp
         Hint = 
           'If you are having trouble making an account, click here for help' +
           '.'

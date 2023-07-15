@@ -90,12 +90,8 @@ begin
   end;
 
   // Find user in database.
-  sSQL := 'SELECT Username FROM tblUsers WHERE Username = "' + sUsername + '"';
-
-  // Query db.
-  dmConnection.qrQuery.SQL.Clear;
-  dmConnection.qrQuery.SQL.ADD(sSQL);
-  dmConnection.qrQuery.Open;
+  Functions.openSQL('SELECT Username FROM tblUsers WHERE Username = "' +
+    sUsername + '"');
 
   // If not empty result from SQL. (Username found)
   if NOT((dmConnection.qrQuery.EOF)) then

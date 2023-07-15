@@ -33,6 +33,7 @@ type
     imgView3: TImage;
     stName: TStaticText;
     btnBack: TBitBtn;
+    lblRecordCount: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -229,6 +230,11 @@ begin
 
   end;
 
+  // Count records.
+  Functions.openSQL('SELECT Count(Title) AS RecordsNumber FROM tblObjectives');
+  lblRecordCount.Caption := 'Amount: ' + dmConnection.qrQuery.Fields[0]
+    .AsString;
+
 end;
 
 procedure TfrmObjectives.imgMenuClick(Sender: TObject);
@@ -245,9 +251,8 @@ begin
 
     // Set new size
     rpHold.Width := 950;
-    rpHold.Alignment := taCenter;
-    rpHold.Align := alRight;
-
+    rpHold.Alignment := taLeftJustify;
+    rpHold.Align := alLeft;
   end
   else
   begin
@@ -262,7 +267,6 @@ begin
     rpHold.Width := 600;
     rpHold.Alignment := taCenter;
     rpHold.Align := alClient;
-
   end;
 end;
 

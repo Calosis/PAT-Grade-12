@@ -30,7 +30,6 @@ type
     btnDonate: TBitBtn;
     stDonate: TStaticText;
     redComments: TRichEdit;
-    lblComments: TLabel;
     btnComment: TBitBtn;
     stComments: TStaticText;
     stName: TStaticText;
@@ -39,6 +38,7 @@ type
     btnEditVictory: TBitBtn;
     lblCreatedBy: TLabel;
     btnEditDonationGoal: TBitBtn;
+    stComment: TStaticText;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
 

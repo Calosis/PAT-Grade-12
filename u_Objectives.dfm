@@ -1516,6 +1516,15 @@ object frmObjectives: TfrmObjectives
         AlignRightWithPanel = False
         AlignTopWithPanel = False
         AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = lblRecordCount
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
       end>
     Align = alClient
     TabOrder = 1
@@ -2447,6 +2456,14 @@ object frmObjectives: TfrmObjectives
           Stretch = True
         end
       end
+    end
+    object lblRecordCount: TLabel
+      Left = 6
+      Top = 534
+      Width = 50
+      Height = 15
+      Anchors = []
+      Caption = 'Amount: '
     end
   end
 end
