@@ -289,6 +289,7 @@ begin
       [TMsgDlgBtn.mbOK], 0);
 
     edtPassword.SetFocus;
+
   end;
 end;
 

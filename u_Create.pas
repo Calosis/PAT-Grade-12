@@ -195,7 +195,6 @@ end;
 
 procedure TfrmCreate.FormShow(Sender: TObject);
 begin
-
   // Always should be centre.
   Functions.sizeCentre(frmCreate);
 
@@ -205,7 +204,6 @@ begin
   edtDonationGoal.Text := '0';
   spnSignatureCount.Value := 0;
   cbxDonations.Checked := false;
-
   edtDonationGoal.Enabled := false;
 end;
 

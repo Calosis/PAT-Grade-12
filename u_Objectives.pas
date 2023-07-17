@@ -34,6 +34,8 @@ type
     stName: TStaticText;
     btnBack: TBitBtn;
     lblRecordCount: TLabel;
+    bhHelp: TBalloonHint;
+    imgHelp: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -54,6 +56,8 @@ type
     procedure pnl6Click(Sender: TObject);
     procedure pnl7Click(Sender: TObject);
     procedure pnl8Click(Sender: TObject);
+    procedure imgHelpMouseEnter(Sender: TObject);
+    procedure imgHelpMouseLeave(Sender: TObject);
   private
     { Private declarations }
 
@@ -235,6 +239,18 @@ begin
   lblRecordCount.Caption := 'Amount: ' + dmConnection.qrQuery.Fields[0]
     .AsString;
 
+end;
+
+procedure TfrmObjectives.imgHelpMouseEnter(Sender: TObject);
+begin
+  bhHelp.Title := 'Impactify help:';
+  bhHelp.Description := 'Click on a panel to create a new objective.';
+  bhHelp.ShowHint(pnl1);
+end;
+
+procedure TfrmObjectives.imgHelpMouseLeave(Sender: TObject);
+begin
+  bhHelp.HideHint;
 end;
 
 procedure TfrmObjectives.imgMenuClick(Sender: TObject);

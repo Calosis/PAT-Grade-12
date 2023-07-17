@@ -47,8 +47,9 @@ uses u_DatabaseConnection;
 class procedure Functions.disableSize(Form: TForm);
 begin
   // Disable window resize.
-  Form.BorderStyle := bsDialog;
-  Form.BorderIcons := Form.BorderIcons;
+  Form.BorderStyle := bsSingle;
+  Form.BorderIcons := Form.BorderIcons - [biMaximize];
+
 end;
 
 class procedure Functions.execSQL(sSQL: String);

@@ -190,7 +190,6 @@ end;
 
 procedure TfrmRegister.FormCreate(Sender: TObject);
 begin
-
   // Form setup.
   Functions.disableSize(frmRegister);
   Functions.makeRound(pnlHold);
@@ -201,7 +200,6 @@ begin
 
   edtPassword.PasswordChar := '*';
   edtPasswordConfirm.PasswordChar := '*';
-
 end;
 
 procedure TfrmRegister.FormShow(Sender: TObject);
@@ -341,7 +339,6 @@ function TfrmRegister.isPasswordValid: Boolean;
 var
   I: Integer;
   bCapital, bNumber, bSpecial: Boolean;
-
 begin
 
   // Set.
@@ -360,7 +357,6 @@ begin
 
     // Dont run any other code, exit function.
     Exit;
-
   end;
 
   // Check if password is valid.
@@ -404,14 +400,12 @@ procedure TfrmRegister.pbQRPaint(Sender: TObject);
 var
   Scale: Double;
 begin
-
   // Draw QR code.
   pbQR.Canvas.Brush.Color := clWhite;
   pbQR.Canvas.FillRect(Rect(0, 0, pbQR.Width, pbQR.Height));
 
   if ((QRCodeBitmap.Width > 0) and (QRCodeBitmap.Height > 0)) then
   begin
-
     if (pbQR.Width < pbQR.Height) then
     begin
       Scale := pbQR.Width / QRCodeBitmap.Width;
@@ -420,10 +414,8 @@ begin
     begin
       Scale := pbQR.Height / QRCodeBitmap.Height;
     end;
-
     pbQR.Canvas.StretchDraw(Rect(0, 0, Trunc(Scale * QRCodeBitmap.Width),
       Trunc(Scale * QRCodeBitmap.Height)), QRCodeBitmap);
-
   end;
 end;
 
