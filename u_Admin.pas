@@ -25,6 +25,7 @@ type
     dbtID: TDBText;
     stName: TStaticText;
     btnTotalDonated: TButton;
+    btnAverageSignatures: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
 
@@ -38,6 +39,7 @@ type
     procedure btnEditBodyClick(Sender: TObject);
     procedure btnTotalDonatedClick(Sender: TObject);
     procedure FormHide(Sender: TObject);
+    procedure btnAverageSignaturesClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -53,6 +55,21 @@ implementation
 {$R *.dfm}
 
 uses u_DatabaseConnection, u_Functions, u_Application;
+
+procedure TfrmAdmin.btnAverageSignaturesClick(Sender: TObject);
+begin
+  // Prevent errors with DBText.
+  dbtID.DataSource.Enabled := false;
+
+  Functions.openSQL('SELECT AVG(SignatureCount) AS AvgSig FROM tblObjectives');
+
+  ShowMessage('Average amount of signatures in application: ' +
+    IntToStr(dmConnection.qrQuery.Fields[0].AsInteger));
+
+  // Re-enable.
+  Functions.openSQL('SELECT * FROM tblObjectives');
+  dbtID.DataSource.Enabled := true;
+end;
 
 procedure TfrmAdmin.btnBackClick(Sender: TObject);
 begin

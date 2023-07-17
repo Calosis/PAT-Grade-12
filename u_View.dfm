@@ -2388,7 +2388,7 @@ object frmView: TfrmView
     object stSign: TStaticText
       Left = 574
       Top = 280
-      Width = 100
+      Width = 99
       Height = 19
       Anchors = []
       Caption = 'Sign this petition: '
@@ -2542,7 +2542,7 @@ object frmView: TfrmView
     object stDonate: TStaticText
       Left = 574
       Top = 369
-      Width = 95
+      Width = 94
       Height = 19
       Anchors = []
       Caption = 'Donate and help:'

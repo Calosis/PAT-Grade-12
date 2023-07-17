@@ -1471,9 +1471,9 @@ object frmAdmin: TfrmAdmin
       OnClick = btnBackClick
     end
     object stName: TStaticText
-      Left = 32
+      Left = 45
       Top = 19
-      Width = 129
+      Width = 116
       Height = 46
       Caption = 'Admin'
       Font.Charset = ANSI_CHARSET
@@ -1593,12 +1593,22 @@ object frmAdmin: TfrmAdmin
     object btnTotalDonated: TButton
       Left = 8
       Top = 504
-      Width = 89
+      Width = 105
       Height = 33
       Cursor = crHandPoint
       Caption = 'Total donated'
       TabOrder = 7
       OnClick = btnTotalDonatedClick
+    end
+    object btnAverageSignatures: TButton
+      Left = 8
+      Top = 542
+      Width = 105
+      Height = 33
+      Cursor = crHandPoint
+      Caption = 'Average Signatures'
+      TabOrder = 8
+      OnClick = btnAverageSignaturesClick
     end
   end
 end
