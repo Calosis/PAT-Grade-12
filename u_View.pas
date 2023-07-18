@@ -138,7 +138,7 @@ begin
   end;
 
   // Safe to store in real.
-  rAmount := StrToInt(sTemp);
+  rAmount := Abs(StrToInt(sTemp));
 
   // Notify user.
   if MessageDlg('Are you sure you want to donate: ' + FloatToStrF(rAmount,

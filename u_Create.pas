@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.WinXCtrls, Vcl.CheckLst, Vcl.Mask, Vcl.Samples.Spin;
+  Vcl.WinXCtrls, Vcl.CheckLst, Vcl.Mask, Vcl.Samples.Spin, Math;
 
 type
   TfrmCreate = class(TForm)
@@ -131,7 +131,7 @@ begin
     // Grab from user.
     sTitle := edtTitle.Text;
     sBody := edtBody.Text;
-    iSignatureCount := spnSignatureCount.Value;
+    iSignatureCount := Abs(spnSignatureCount.Value);
     rDonationGoal := StrToFloat(edtDonationGoal.Text);
     bDonation := cbxDonations.Checked;
 
