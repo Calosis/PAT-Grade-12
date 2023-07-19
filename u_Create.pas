@@ -132,7 +132,7 @@ begin
     sTitle := edtTitle.Text;
     sBody := edtBody.Text;
     iSignatureCount := Abs(spnSignatureCount.Value);
-    rDonationGoal := StrToFloat(edtDonationGoal.Text);
+    rDonationGoal := Abs(StrToFloat(edtDonationGoal.Text));
     bDonation := cbxDonations.Checked;
 
     iID := dmConnection.tblObjectives.RecordCount + 1;
