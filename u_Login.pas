@@ -20,7 +20,7 @@ type
     edtPassword: TLabeledEdit;
     btnLogin: TBitBtn;
     tOTP: TTimer;
-    Button1: TButton;
+    btnBypass: TButton;
 
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
@@ -35,7 +35,7 @@ type
     procedure btnRegisterClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure tOTPTimer(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnBypassClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -217,7 +217,7 @@ begin
   frmRegister.Show;
 end;
 
-procedure TfrmLogin.Button1Click(Sender: TObject);
+procedure TfrmLogin.btnBypassClick(Sender: TObject);
 begin
   // bypass for dev
   frmLogin.Hide;

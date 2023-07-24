@@ -169,6 +169,11 @@ begin
       MessageDlg('Account successfully created.', TMsgDlgType.mtConfirmation,
         [TMsgDlgBtn.mbOK], 0);
 
+      // We should clear.
+      edtUsername.Clear;
+      edtPassword.Clear;
+      edtPasswordConfirm.Clear;
+
     end;
   end;
 end;

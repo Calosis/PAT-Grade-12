@@ -1820,14 +1820,17 @@ object frmLogin: TfrmLogin
         TabOrder = 2
         OnClick = btnLoginClick
       end
-      object Button1: TButton
-        Left = 448
-        Top = 280
+      object btnBypass: TButton
+        Left = 560
+        Top = 352
         Width = 75
         Height = 25
-        Caption = 'dev bypass'
+        Hint = 'Will cause issues to occur.'
+        Caption = 'BYPASS'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 3
-        OnClick = Button1Click
+        OnClick = btnBypassClick
       end
     end
   end
