@@ -26,9 +26,10 @@ type
     stName: TStaticText;
     btnTotalDonated: TButton;
     btnAverageSignatures: TButton;
+    btnRecordDelete: TButton;
+    btnOwner: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-
     // Fix for multi forums.
     procedure CreateParams(var Params: TCreateParams); override;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -40,7 +41,8 @@ type
     procedure btnTotalDonatedClick(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure btnAverageSignaturesClick(Sender: TObject);
-
+    procedure btnRecordDeleteClick(Sender: TObject);
+    procedure btnOwnerClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,7 +64,6 @@ begin
   dbtID.DataSource.Enabled := false;
 
   Functions.openSQL('SELECT AVG(SignatureCount) AS AvgSig FROM tblObjectives');
-
   ShowMessage('Average amount of signatures in application: ' +
     IntToStr(dmConnection.qrQuery.Fields[0].AsInteger));
 
@@ -108,12 +109,62 @@ begin
   begin
     MessageDlg('Please enter a new title.', TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK], 0);
+
     Exit;
   end;
-
   Functions.execSQL('UPDATE tblObjectives SET Title = ' + '"' + sTemp + '"' +
     ' WHERE O_ID = ' + dbtID.Caption);
   Functions.openSQL('SELECT * FROM tblObjectives');
+end;
+
+procedure TfrmAdmin.btnOwnerClick(Sender: TObject);
+var
+  iID: Integer;
+begin
+
+  // Ready.
+  dmConnection.tblUsers.First;
+  dmConnection.tblObjectives.First;
+  dmConnection.tblLink.First;
+
+  while NOT(dmConnection.tblLink.Eof) do
+  begin
+
+    if dbtID.Caption = dmConnection.tblLink['Objective'] then
+    begin
+
+      // Grab owner of objective.\
+      iID := dmConnection.tblLink['User'];
+
+      // Find username.
+      while NOT(dmConnection.tblUsers.Eof) do
+      begin
+
+        if (dmConnection.tblUsers['U_ID'] = iID) then
+        begin
+          // Notify.
+          ShowMessage('Owner is: ' + dmConnection.tblUsers['Username']);
+
+          // We are all done.
+          Exit;
+        end;
+        // Move.
+        dmConnection.tblUsers.Next;
+      end;
+      // Stop.
+      Exit;
+    end;
+    // Move.
+    dmConnection.tblLink.Next;
+  end;
+
+end;
+
+procedure TfrmAdmin.btnRecordDeleteClick(Sender: TObject);
+begin
+  // Delete current record.
+  Functions.execSQL('DELETE * FROM tblObjectives WHERE O_ID = ' +
+    dbtID.Caption);
 end;
 
 procedure TfrmAdmin.btnSearchClick(Sender: TObject);
@@ -124,13 +175,16 @@ begin
     MessageDlg('Please enter a title to search for.', TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK], 0);
     edtSearchTitle.SetFocus;
+
     Exit;
   end;
 
   Functions.openSQL('SELECT * FROM tblObjectives WHERE Title LIKE ' + '"%' +
     edtSearchTitle.Text + '%"');
+
   MessageDlg('Search completed.', TMsgDlgType.mtInformation,
     [TMsgDlgBtn.mbOK], 0);
+
 end;
 
 procedure TfrmAdmin.btnSortClick(Sender: TObject);
@@ -141,6 +195,7 @@ begin
     MessageDlg('Please select a value.', TMsgDlgType.mtError,
       [TMsgDlgBtn.mbOK], 0);
     cbxSort.SetFocus;
+
     Exit;
   end;
 
@@ -157,8 +212,8 @@ begin
   // Sum.
   Functions.openSQL
     ('SELECT SUM(DonationAmount) AS TotalDonated FROM tblObjectives');
-
   // Notify.
+
   ShowMessage('Total donations in platform: ' +
     FloatToStrF(dmConnection.qrQuery.Fields[0].asFloat, ffCurrency, 8, 2));
 
@@ -170,8 +225,8 @@ end;
 procedure TfrmAdmin.CreateParams(var Params: TCreateParams);
 begin
   inherited;
-
   // Set style sheet so Windows knows its another "window".
+
   Params.ExStyle := Params.ExStyle or WS_EX_APPWINDOW;
   Params.WndParent := GetDesktopWindow;
 end;

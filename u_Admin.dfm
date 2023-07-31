@@ -1592,7 +1592,7 @@ object frmAdmin: TfrmAdmin
     end
     object btnTotalDonated: TButton
       Left = 8
-      Top = 504
+      Top = 542
       Width = 105
       Height = 33
       Cursor = crHandPoint
@@ -1602,13 +1602,34 @@ object frmAdmin: TfrmAdmin
     end
     object btnAverageSignatures: TButton
       Left = 8
-      Top = 542
+      Top = 590
       Width = 105
       Height = 33
       Cursor = crHandPoint
       Caption = 'Average Signatures'
       TabOrder = 8
       OnClick = btnAverageSignaturesClick
+    end
+    object btnRecordDelete: TButton
+      Left = 8
+      Top = 448
+      Width = 75
+      Height = 25
+      Caption = 'Delete'
+      TabOrder = 9
+      OnClick = btnRecordDeleteClick
+    end
+    object btnOwner: TButton
+      Left = 8
+      Top = 487
+      Width = 75
+      Height = 25
+      Hint = 'Click here to see who made the objective.'
+      Caption = 'Owner'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+      OnClick = btnOwnerClick
     end
   end
 end
