@@ -211,17 +211,20 @@ begin
         dmConnection.tblUsers.Close;
         dmConnection.tblObjectives.Close;
         dmConnection.tblLink.Close;
+        dmConnection.tblSignatures.Close;
 
         // Copy backup before we do anything
         CopyFile('dbmApplication.mdb', 'dbmApplication.mdb.bak', false);
 
         Functions.execSQL('DELETE * FROM tblLink');
         Functions.execSQL('DELETE * FROM tblUsers');
+        Functions.execSQL('DELETE * FROM tblSignatures');
         Functions.execSQL('DELETE * FROM tblObjectives');
 
         // Reopen.
         dmConnection.tblLink.Open;
         dmConnection.tblUsers.Open;
+        dmConnection.tblSignatures.Open;
         dmConnection.tblObjectives.Open;
 
         // Catch and show any error.
