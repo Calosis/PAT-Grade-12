@@ -22,6 +22,8 @@ type
     class procedure execSQL(sSQL: String);
     class procedure resetDB();
     class function isNumber(Input: String): Boolean;
+    class function isReal(Input: String): Boolean;
+    class function convertReal(Input: String): String;
 
     // Object stuff.
     class function findID(Title: String): Integer;
@@ -44,12 +46,26 @@ uses u_DatabaseConnection;
 
 // Source - https://stackoverflow.com/users/1062933/please-dont-bully-me-so-lords
 
+class function Functions.convertReal(Input: String): String;
+var
+  I: Integer;
+begin
+  // Replace "." with ",".
+  for I := 1 to Length(Input) do
+  begin
+    if Input[I] = '.' then
+    begin
+      Input[I] := ',';
+    end;
+  end;
+  Result := Input;
+end;
+
 class procedure Functions.disableSize(Form: TForm);
 begin
   // Disable window resize.
   Form.BorderStyle := bsSingle;
   Form.BorderIcons := Form.BorderIcons - [biMaximize];
-
 end;
 
 class procedure Functions.execSQL(sSQL: String);
@@ -167,6 +183,23 @@ begin
   end;
 end;
 
+class function Functions.isReal(Input: String): Boolean;
+var
+  iStatus: Integer;
+  rTemp: Real;
+begin
+  // Check
+  Val(Input, rTemp, iStatus);
+  if iStatus = 0 then
+  begin
+    Result := true;
+  end
+  else
+  begin
+    Result := false;
+  end;
+end;
+
 class procedure Functions.makeRound(Control: TWinControl);
 var
   Rect: TRect;
@@ -211,20 +244,17 @@ begin
         dmConnection.tblUsers.Close;
         dmConnection.tblObjectives.Close;
         dmConnection.tblLink.Close;
-        dmConnection.tblSignatures.Close;
 
         // Copy backup before we do anything
         CopyFile('dbmApplication.mdb', 'dbmApplication.mdb.bak', false);
 
         Functions.execSQL('DELETE * FROM tblLink');
         Functions.execSQL('DELETE * FROM tblUsers');
-        Functions.execSQL('DELETE * FROM tblSignatures');
         Functions.execSQL('DELETE * FROM tblObjectives');
 
         // Reopen.
         dmConnection.tblLink.Open;
         dmConnection.tblUsers.Open;
-        dmConnection.tblSignatures.Open;
         dmConnection.tblObjectives.Open;
 
         // Catch and show any error.

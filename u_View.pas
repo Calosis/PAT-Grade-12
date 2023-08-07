@@ -13,7 +13,6 @@ type
     svSide: TSplitView;
     btnBack: TBitBtn;
     rpHold: TRelativePanel;
-    stHeader: TStaticText;
     redBody: TRichEdit;
     stBody: TStaticText;
     imgMenu: TImage;
@@ -73,6 +72,7 @@ var
   objLocal: TObjectiveO;
   tFile: TextFile;
   sName: String;
+  lblHeading: TLabel;
 
 implementation
 
@@ -349,6 +349,19 @@ begin
   // Always should be centre.
   Functions.sizeCentre(frmView);
 
+  // Set width.
+  redComments.Paragraph.TabCount := 2;
+  redComments.Paragraph.Tab[0] := 80;
+  redComments.Paragraph.Tab[1] := 150;
+
+  // Create heading dynamically
+  lblHeading := TLabel.Create(Self);
+  lblHeading.Parent := rpHold;
+  lblHeading.Left := 30;
+  lblHeading.Top := 27;
+  lblHeading.Font.Size := 26;
+  lblHeading.Font.Style := [fsBold];
+
   // Set.
   bShown := true;
   iIndex := Functions.findObjectArray(frmObjectives.arrObjects,
@@ -464,7 +477,8 @@ end;
 
 procedure TfrmView.loadComments;
 var
-  sTemp: String;
+  sTemp, sUsername, sComment: String;
+  iPos: Integer;
 begin
 
   // Create File if not exists.
@@ -475,6 +489,9 @@ begin
 
   // Clear.
   redComments.Lines.Clear;
+  redComments.Lines.Add('User:' + #9 + 'Comment:');
+  redComments.Lines.Add('----------------------------------');
+  redComments.Lines.Add('');
 
   // Ready.
   Reset(tFile);
@@ -483,7 +500,12 @@ begin
   while NOT(Eof(tFile)) do
   begin
     Readln(tFile, sTemp);
-    redComments.Lines.Add(sTemp);
+
+    iPos := Pos(':', sTemp);
+    sUsername := Copy(sTemp, 1, iPos);
+    sComment := Copy(sTemp, iPos + 1);
+
+    redComments.Lines.Add(sUsername + #9 + sComment);
   end;
 
   // Finish.
@@ -495,6 +517,7 @@ procedure TfrmView.resetPanel;
 begin
   // Clear all old stuff.
   redBody.Clear;
+
   lblCreated.Caption := 'Created on: ';
   lblSigCount.Caption := 'Signatures: ';
   lblDonations.Caption := '';
@@ -512,7 +535,7 @@ var
 begin
 
   // Grab from obj.
-  stHeader.Caption := UpperCase(objLocal.getTitle);
+  lblHeading.Caption := UpperCase(objLocal.getTitle);
 
   redBody.Clear;
   redBody.Lines.Add(objLocal.getBody);

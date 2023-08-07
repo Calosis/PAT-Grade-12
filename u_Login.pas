@@ -219,7 +219,9 @@ end;
 
 procedure TfrmLogin.btnBypassClick(Sender: TObject);
 begin
-  // bypass for dev
+  // Move forms.
+  ShowMessage('Using this button will cause errors.');
+
   frmLogin.Hide;
   frmObjectives.Show;
 end;

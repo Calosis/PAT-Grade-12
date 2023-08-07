@@ -1320,15 +1320,6 @@ object frmView: TfrmView
     Height = 562
     ControlCollection = <
       item
-        Control = stHeader
-        AlignBottomWithPanel = False
-        AlignHorizontalCenterWithPanel = False
-        AlignLeftWithPanel = False
-        AlignRightWithPanel = False
-        AlignTopWithPanel = False
-        AlignVerticalCenterWithPanel = False
-      end
-      item
         Control = redBody
         AlignBottomWithPanel = False
         AlignHorizontalCenterWithPanel = False
@@ -1551,23 +1542,6 @@ object frmView: TfrmView
     DesignSize = (
       738
       562)
-    object stHeader: TStaticText
-      AlignWithMargins = True
-      Left = 30
-      Top = 27
-      Width = 211
-      Height = 46
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'Placeholder'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -35
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 0
-    end
     object redBody: TRichEdit
       Left = 16
       Top = 128
@@ -1581,7 +1555,7 @@ object frmView: TfrmView
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
     end
     object stBody: TStaticText
       Left = 16
@@ -1590,7 +1564,7 @@ object frmView: TfrmView
       Height = 19
       Anchors = []
       Caption = 'Information:'
-      TabOrder = 2
+      TabOrder = 1
     end
     object imgMenu: TImage
       Left = 696
@@ -2382,7 +2356,7 @@ object frmView: TfrmView
         0012FFFFFF00}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 3
+      TabOrder = 2
       OnClick = btnSignClick
     end
     object stSign: TStaticText
@@ -2392,7 +2366,7 @@ object frmView: TfrmView
       Height = 19
       Anchors = []
       Caption = 'Sign this petition: '
-      TabOrder = 4
+      TabOrder = 3
     end
     object btnDonate: TBitBtn
       Left = 683
@@ -2536,7 +2510,7 @@ object frmView: TfrmView
         000000000000}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 5
+      TabOrder = 4
       OnClick = btnDonateClick
     end
     object stDonate: TStaticText
@@ -2546,7 +2520,7 @@ object frmView: TfrmView
       Height = 19
       Anchors = []
       Caption = 'Donate and help:'
-      TabOrder = 6
+      TabOrder = 5
     end
     object redComments: TRichEdit
       Left = 375
@@ -2561,7 +2535,7 @@ object frmView: TfrmView
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 6
     end
     object btnComment: TBitBtn
       Left = 680
@@ -2705,7 +2679,7 @@ object frmView: TfrmView
         000000000000}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 8
+      TabOrder = 7
       OnClick = btnCommentClick
     end
     object stComments: TStaticText
@@ -2715,7 +2689,7 @@ object frmView: TfrmView
       Height = 19
       Anchors = []
       Caption = 'Comments:'
-      TabOrder = 9
+      TabOrder = 8
     end
     object btnEditTitle: TBitBtn
       Left = 639
@@ -2859,7 +2833,7 @@ object frmView: TfrmView
         000D00000000}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 10
+      TabOrder = 9
       StyleName = 'Windows11 MineShaft'
       OnClick = btnEditTitleClick
     end
@@ -3005,7 +2979,7 @@ object frmView: TfrmView
         000D00000000}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 11
+      TabOrder = 10
       OnClick = btnEditBodyClick
     end
     object btnEditVictory: TBitBtn
@@ -3150,7 +3124,7 @@ object frmView: TfrmView
         000D00000000}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 12
+      TabOrder = 11
       OnClick = btnEditVictoryClick
     end
     object lblCreatedBy: TLabel
@@ -3303,7 +3277,7 @@ object frmView: TfrmView
         000D00000000}
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 13
+      TabOrder = 12
       OnClick = btnEditVictoryClick
     end
     object stComment: TStaticText
@@ -3313,7 +3287,7 @@ object frmView: TfrmView
       Height = 19
       Anchors = []
       Caption = 'Add a comment:'
-      TabOrder = 14
+      TabOrder = 13
     end
   end
   object svSide: TSplitView
